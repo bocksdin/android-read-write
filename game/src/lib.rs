@@ -30,9 +30,15 @@ impl Game {
             .async_scene_loader
             .request(scene_path.unwrap_or("data/scene.rgs"));
 
-        match std::fs::write("rust.executor_android/files/id.txt", "123456") {
+        // Working Example of Android Filesystem
+        match std::fs::write("/data/data/rust.executor_android/files/id.txt", "123456") {
             Ok(_) => Log::warn("id.txt created"),
             Err(e) => Log::warn(format!("id.txt not created: {}", e)),
+        }
+
+        match std::fs::read_to_string("/data/data/rust.executor_android/files/id.txt") {
+            Ok(s) => Log::warn(format!("id.txt read: {}", s)),
+            Err(e) => Log::warn(format!("id.txt not read: {}", e)),
         }
 
         Self {
