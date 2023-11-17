@@ -1,0 +1,22 @@
+
+[package]
+name = "executor-android"
+version = "0.1.0"
+edition = "2021"
+
+[package.metadata.android]
+assets = "../data"
+strip = "strip"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+fyrox = { workspace = true }
+android_read_write = { path = "../game" }
+android-activity = { version = "0.5.0", features = ["native-activity"] }
+
+[package.metadata.android.sdk]
+min_sdk_version = 26
+target_sdk_version = 30
+max_sdk_version = 29
